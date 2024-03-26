@@ -6,6 +6,7 @@ import {
   Formulario,
   Meses,
   SueldosBasicos,
+  SueldosBasicosConDesdeHasta,
 } from './types.ts'
 import { calcularPorcentaje, roundUp, sumSueldos } from './utils.ts'
 import {
@@ -266,3 +267,5 @@ export function calcularSueldos(
   const sueldosConPorcentajeAumento = calcularSueldosConPorcentajeAumento(sueldosPorMes)
   return sueldosConPorcentajeAumento
 }
+
+// TODO: parse result dates to numbers

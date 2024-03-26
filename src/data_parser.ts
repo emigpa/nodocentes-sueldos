@@ -1,4 +1,10 @@
-import { Adicionales, DatasetAdicionales, DatasetSueldosBasicos, SueldosBasicos } from './types.ts'
+import {
+  Adicionales,
+  DatasetAdicionales,
+  DatasetSueldosBasicos,
+  SueldosBasicos,
+  SueldosBasicosConDesdeHasta,
+} from './types.ts'
 import { DateTime, Interval } from '../deps.ts'
 import { castFecha, sueldo2Number, sueldoARS2Number } from './utils.ts'
 
@@ -52,7 +58,7 @@ export function castAdicionales(adicionales: DatasetAdicionales, ars = false): A
  * @param sueldos - The array of basic salaries.
  * @returns The array of basic salaries with DESDE and HASTA dates.
  */
-export function sueldosBasicosOnTimeline(sueldos: SueldosBasicos[]): SueldosBasicos[] {
+export function sueldosBasicosOnTimeline(sueldos: SueldosBasicos[]): SueldosBasicosConDesdeHasta[] {
   return sueldos
     // ordenarlos por fecha descendente
     .sort((a, b) => a.FECHA > b.FECHA ? -1 : a.FECHA < b.FECHA ? 1 : 0)
@@ -85,7 +91,7 @@ export function sueldosBasicosOnTimeline(sueldos: SueldosBasicos[]): SueldosBasi
  * @returns The SueldosBasicos that are within the specified date range.
  */
 export function findSueldosBasicosPorFecha(
-  sueldos: SueldosBasicos[],
+  sueldos: SueldosBasicosConDesdeHasta[],
   desde: DateTime,
   hasta: DateTime,
 ): SueldosBasicos {

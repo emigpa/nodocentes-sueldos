@@ -118,18 +118,6 @@ export type Formulario = {
 
 export type Sueldo = number
 
-export type SueldosBasicos = {
-  'FECHA': DateTime
-  'DESDE'?: DateTime
-  'HASTA'?: DateTime
-  'CATEGORIA 1': Sueldo
-  'CATEGORIA 2': Sueldo
-  'CATEGORIA 3': Sueldo
-  'CATEGORIA 4': Sueldo
-  'CATEGORIA 5': Sueldo
-  'CATEGORIA 6': Sueldo
-  'CATEGORIA 7': Sueldo
-}
 export type DatasetSueldosBasicos = {
   'FECHA': string
   'CATEGORIA 1': string
@@ -139,6 +127,29 @@ export type DatasetSueldosBasicos = {
   'CATEGORIA 5': string
   'CATEGORIA 6': string
   'CATEGORIA 7': string
+}
+
+export type SueldosBasicos = {
+  'FECHA': DateTime
+  'CATEGORIA 1': Sueldo
+  'CATEGORIA 2': Sueldo
+  'CATEGORIA 3': Sueldo
+  'CATEGORIA 4': Sueldo
+  'CATEGORIA 5': Sueldo
+  'CATEGORIA 6': Sueldo
+  'CATEGORIA 7': Sueldo
+}
+export type SueldosBasicosConDesdeHasta = {
+  'FECHA': DateTime
+  'DESDE': DateTime
+  'HASTA': DateTime
+  'CATEGORIA 1': Sueldo
+  'CATEGORIA 2': Sueldo
+  'CATEGORIA 3': Sueldo
+  'CATEGORIA 4': Sueldo
+  'CATEGORIA 5': Sueldo
+  'CATEGORIA 6': Sueldo
+  'CATEGORIA 7': Sueldo
 }
 
 export type DatasetAdicionales = {

@@ -1,4 +1,4 @@
-import { assertEquals } from '../deps.ts'
+import { assertEquals } from 'jsr:@std/assert'
 import { castFecha, createMonthsObject } from '../src/utils.ts'
 import { Adicionales, Formulario } from '../src/types.ts'
 
