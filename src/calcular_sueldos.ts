@@ -1,7 +1,22 @@
-import { Adicionales, Calculos, Formulario, Meses, SueldosBasicos } from './types.ts'
+import {
+  Adicionales,
+  Calculos,
+  DatasetAdicionales,
+  DatasetSueldosBasicos,
+  Formulario,
+  Meses,
+  SueldosBasicos,
+} from './types.ts'
 import { calcularPorcentaje, roundUp, sumSueldos } from './utils.ts'
-import { filterAdicionalesPorFecha, findSueldosBasicosPorFecha, sueldosBasicosOnTimeline } from './data_parser.ts'
+import {
+  castAdicionales,
+  castSueldosBasicos,
+  filterAdicionalesPorFecha,
+  findSueldosBasicosPorFecha,
+  sueldosBasicosOnTimeline,
+} from './data_parser.ts'
 import * as calculosParciales from './calculos_parciales.ts'
+import { createMonthsObject } from './utils.ts'
 
 /**
  * Calculates the monthly salary based on the provided inputs.
@@ -196,6 +211,11 @@ export function calcularSueldoPorMes(
     })
 }
 
+/**
+ * Calculates the salaries with percentage increase.
+ * @param sueldosPorMes - The array of salary calculations.
+ * @returns The array of salary calculations with added percentage increase.
+ */
 export function calcularSueldosConPorcentajeAumento(sueldosPorMes: Calculos[]): Calculos[] {
   return sueldosPorMes
     .map((s, i, a) => {
@@ -219,13 +239,30 @@ export function calcularSueldosConPorcentajeAumento(sueldosPorMes: Calculos[]): 
     })
 }
 
+interface calcularSueldosOptions {
+  meses: string[]
+  año: string
+}
+
+/**
+ * Calculates the salaries based on the provided inputs.
+ *
+ * @param formulario - The form data.
+ * @param sueldosBasicos - The dataset of basic salaries.
+ * @param adicionales - The dataset of additional salaries.
+ * @param options - The calculation options: { meses(1-12): string[], año(YYYY): string }.
+ * @returns An array of calculated salaries.
+ */
 export function calcularSueldos(
   formulario: Formulario,
-  meses: Meses[],
-  sueldosBasicos: SueldosBasicos[],
-  adicionales: Adicionales[],
+  sueldosBasicos: DatasetSueldosBasicos[],
+  adicionales: DatasetAdicionales[],
+  options: calcularSueldosOptions,
 ): Calculos[] {
-  const sueldosPorMes = calcularSueldoPorMes(formulario, meses, sueldosBasicos, adicionales)
+  const createMonths = options.meses.map((m) => createMonthsObject(m, options.año))
+  const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb))
+  const adicionalesCast = adicionales.map((a) => castAdicionales(a))
+  const sueldosPorMes = calcularSueldoPorMes(formulario, createMonths, sueldosBasicosCast, adicionalesCast)
   const sueldosConPorcentajeAumento = calcularSueldosConPorcentajeAumento(sueldosPorMes)
   return sueldosConPorcentajeAumento
 }

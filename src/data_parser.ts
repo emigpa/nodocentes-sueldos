@@ -1,44 +1,48 @@
 import { Adicionales, DatasetAdicionales, DatasetSueldosBasicos, SueldosBasicos } from './types.ts'
 import { DateTime, Interval } from '../deps.ts'
-import { castFecha, sueldo2Number } from './utils.ts'
+import { castFecha, sueldo2Number, sueldoARS2Number } from './utils.ts'
 
 /**
- * Casts the given `sueldo` object of type `DatasetSueldosBasicos` (all string type) to `SueldosBasicos` type.
+ * Casts the sueldos basicos dataset into a standardized format.
  *
- * @param sueldo - The `DatasetSueldosBasicos` object to be casted.
- * @returns The `SueldosBasicos` object after casting.
+ * @param sueldo - The dataset of sueldos basicos.
+ * @param ars - Optional parameter indicating whether to convert the sueldo values to ARS currency.
+ * @returns The sueldos basicos dataset in the standardized format.
  */
-export function castSueldosBasicos(sueldo: DatasetSueldosBasicos): SueldosBasicos {
+export function castSueldosBasicos(sueldo: DatasetSueldosBasicos, ars = false): SueldosBasicos {
+  const castSueldo2Number = ars ? sueldoARS2Number : sueldo2Number
   return ({
     FECHA: castFecha(sueldo.FECHA),
-    'CATEGORIA 1': sueldo2Number(sueldo['CATEGORIA 1']),
-    'CATEGORIA 2': sueldo2Number(sueldo['CATEGORIA 2']),
-    'CATEGORIA 3': sueldo2Number(sueldo['CATEGORIA 3']),
-    'CATEGORIA 4': sueldo2Number(sueldo['CATEGORIA 4']),
-    'CATEGORIA 5': sueldo2Number(sueldo['CATEGORIA 5']),
-    'CATEGORIA 6': sueldo2Number(sueldo['CATEGORIA 6']),
-    'CATEGORIA 7': sueldo2Number(sueldo['CATEGORIA 7']),
+    'CATEGORIA 1': castSueldo2Number(sueldo['CATEGORIA 1']),
+    'CATEGORIA 2': castSueldo2Number(sueldo['CATEGORIA 2']),
+    'CATEGORIA 3': castSueldo2Number(sueldo['CATEGORIA 3']),
+    'CATEGORIA 4': castSueldo2Number(sueldo['CATEGORIA 4']),
+    'CATEGORIA 5': castSueldo2Number(sueldo['CATEGORIA 5']),
+    'CATEGORIA 6': castSueldo2Number(sueldo['CATEGORIA 6']),
+    'CATEGORIA 7': castSueldo2Number(sueldo['CATEGORIA 7']),
   })
 }
 
 /**
- * Casts the given dataset of Adicionales (all string type) into the Adicionales type.
- * @param adicionales The dataset of additional information.
+ * Casts the provided dataset of adicionales to the Adicionales type.
+ * @param adicionales - The dataset of adicionales to be casted.
+ * @param ars - Optional parameter indicating whether to use ARS conversion for sueldo values. Default is false.
  * @returns The casted Adicionales object.
  */
-export function castAdicionales(adicionales: DatasetAdicionales): Adicionales {
+export function castAdicionales(adicionales: DatasetAdicionales, ars = false): Adicionales {
+  const castSueldo2Number = ars ? sueldoARS2Number : sueldo2Number
   return ({
     DESDE: castFecha(adicionales.DESDE),
     HASTA: castFecha(adicionales.HASTA),
-    'CATEGORIA 1': sueldo2Number(adicionales['CATEGORIA 1']),
-    'CATEGORIA 2': sueldo2Number(adicionales['CATEGORIA 2']),
-    'CATEGORIA 3': sueldo2Number(adicionales['CATEGORIA 3']),
-    'CATEGORIA 4': sueldo2Number(adicionales['CATEGORIA 4']),
-    'CATEGORIA 5': sueldo2Number(adicionales['CATEGORIA 5']),
-    'CATEGORIA 6': sueldo2Number(adicionales['CATEGORIA 6']),
-    'CATEGORIA 7': sueldo2Number(adicionales['CATEGORIA 7']),
     CONCEPTO: adicionales.CONCEPTO,
     REMUNERATIVO: adicionales.REMUNERATIVO,
+    'CATEGORIA 1': castSueldo2Number(adicionales['CATEGORIA 1']),
+    'CATEGORIA 2': castSueldo2Number(adicionales['CATEGORIA 2']),
+    'CATEGORIA 3': castSueldo2Number(adicionales['CATEGORIA 3']),
+    'CATEGORIA 4': castSueldo2Number(adicionales['CATEGORIA 4']),
+    'CATEGORIA 5': castSueldo2Number(adicionales['CATEGORIA 5']),
+    'CATEGORIA 6': castSueldo2Number(adicionales['CATEGORIA 6']),
+    'CATEGORIA 7': castSueldo2Number(adicionales['CATEGORIA 7']),
   })
 }
 

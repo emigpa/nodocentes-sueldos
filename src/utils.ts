@@ -23,6 +23,18 @@ export function formatCurrency(monto: string) {
 }
 
 /**
+ * Converts a string representation of a sueldo (ARS) to a number.
+ *
+ * @param sueldo - The sueldo as a string.
+ * @returns The sueldo as a number.
+ */
+export function sueldoARS2Number(sueldo: string): Sueldo {
+  return Number(
+    sueldo.replaceAll('$', '').replaceAll('.', '').replaceAll(',', '.'),
+  )
+}
+
+/**
  * Converts a string representation of a sueldo to a number.
  *
  * @param sueldo - The sueldo as a string.
@@ -30,7 +42,7 @@ export function formatCurrency(monto: string) {
  */
 export function sueldo2Number(sueldo: string): Sueldo {
   return Number(
-    sueldo.replaceAll('$', '').replaceAll('.', '').replaceAll(',', '.'),
+    sueldo.replaceAll('$', '').replaceAll(',', ''),
   )
 }
 
@@ -51,7 +63,7 @@ export function roundUp(num: Sueldo): Sueldo {
  * @param año - The year as a string.
  * @returns An object with the start and end dates of the specified month and year.
  */
-export function createMonthsObject(month: number, año: string): Meses {
+export function createMonthsObject(month: string, año: string): Meses {
   const DESDE = DateTime.fromObject({
     month: Number(month),
     year: parseInt(año),
