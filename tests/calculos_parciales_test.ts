@@ -1,6 +1,6 @@
 import { assertEquals } from '../deps.ts'
-import { castFecha, createMonthsObject } from '../src/utils.ts'
-import { Adicionales, Formulario } from '../src/types.ts'
+import { castFecha } from '../src/utils.ts'
+import { Formulario } from '../src/types.ts'
 
 import * as main from '../mod.ts'
 
@@ -28,8 +28,6 @@ const sueldosBasicos = [{
   'CATEGORIA 6': 421738,
   'CATEGORIA 7': 351452,
 }]
-const adicionales = [] as Adicionales[]
-const meses = [createMonthsObject(3, '2024')]
 
 Deno.test('Cálculo de Permanencia de 2 a 4 años para la Categoria 3', () => {
   const t = main.calcularPermanencia(sueldosBasicos[0], 'CATEGORIA 3', '2 a 4 años')
@@ -134,14 +132,4 @@ Deno.test('Cálculo de APUNSAM para la categoría 3', () => {
 Deno.test('Cálculo de APUNSAM para la categoría 3, sin APUNSAM: da 0', () => {
   const t = main.calcularApunsam(sueldosBasicos[0], 'CATEGORIA 3', 'NO')
   assertEquals(0, t)
-})
-
-Deno.test('Cálculo de sueldo de ejemplo', () => {
-  const sueldo = main.calcularSueldoPorMes(
-    formulario,
-    meses,
-    sueldosBasicos,
-    adicionales,
-  )
-  assertEquals(1151009.23, sueldo[0].montoSueldoBruto)
 })

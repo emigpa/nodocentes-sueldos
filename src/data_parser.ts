@@ -74,28 +74,45 @@ export function sueldosBasicosOnTimeline(sueldos: SueldosBasicos[]): SueldosBasi
 }
 
 /**
- * Filters the array of SueldosBasicos based on the given date range.
- *
- * @param sueldos - The array of SueldosBasicos to filter.
+ * Finds the SueldosBasicos within a given date range.
+ * @param sueldos - The array of SueldosBasicos to search.
  * @param desde - The start date of the range.
  * @param hasta - The end date of the range.
- * @returns The filtered array of SueldosBasicos.
+ * @returns The SueldosBasicos that are within the specified date range.
  */
-export function filterSueldosBasicosPorFecha(
+export function findSueldosBasicosPorFecha(
   sueldos: SueldosBasicos[],
   desde: DateTime,
   hasta: DateTime,
-): SueldosBasicos[] {
+): SueldosBasicos {
   return sueldos
     // filtar los sueldos que estan vigentes mes a mes.
-    .filter((s) => {
+    .find((s) => {
       const mes = Interval.fromDateTimes(desde, hasta)
       const vigenciaAdicionales = Interval.fromDateTimes(s.DESDE, s.HASTA)
       // los adicionales que estan vigentes en cada mes.
       return mes.overlaps(vigenciaAdicionales)
-    })
+    }) || {
+    'FECHA': desde,
+    'DESDE': desde,
+    'HASTA': hasta,
+    'CATEGORIA 1': 0,
+    'CATEGORIA 2': 0,
+    'CATEGORIA 3': 0,
+    'CATEGORIA 4': 0,
+    'CATEGORIA 5': 0,
+    'CATEGORIA 6': 0,
+    'CATEGORIA 7': 0,
+  }
 }
 
+/**
+ * Filters the "adicionales" array based on the specified date range.
+ * @param adicionales - The array of "Adicionales" objects to filter.
+ * @param desde - The start date of the range.
+ * @param hasta - The end date of the range.
+ * @returns The filtered array of "Adicionales" objects.
+ */
 export function filterAdicionalesPorFecha(adicionales: Adicionales[], desde: DateTime, hasta: DateTime): Adicionales[] {
   return adicionales
     .filter((a) => {

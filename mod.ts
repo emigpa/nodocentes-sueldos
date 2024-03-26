@@ -15,4 +15,4 @@ export {
   calcularSuplemento,
 } from './src/calculos_parciales.ts'
 
-export { calcularSueldoPorMes } from './src/calcular_sueldos.ts'
+export { calcularSueldoPorMes, calcularSueldos, calcularSueldosConPorcentajeAumento } from './src/calcular_sueldos.ts'

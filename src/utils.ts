@@ -47,26 +47,37 @@ export function roundUp(num: Sueldo): Sueldo {
 
 /**
  * Creates an object with the start and end dates of a given month and year.
- * @param month - The month (0-11).
+ * @param month - The month (1-12).
  * @param año - The year as a string.
  * @returns An object with the start and end dates of the specified month and year.
  */
 export function createMonthsObject(month: number, año: string): Meses {
   const DESDE = DateTime.fromObject({
-    month: Number(month + 1),
+    month: Number(month),
     year: parseInt(año),
   }).startOf('month').setLocale('es-AR')
   const HASTA = DateTime.fromObject({
-    month: Number(month + 1),
+    month: Number(month),
     year: parseInt(año),
   }).endOf('month').setLocale('es-AR')
   return { DESDE, HASTA }
 }
 
+/**
+ * Calculates the sum of an array of sueldos.
+ * @param sueldos - The array of sueldos to sum.
+ * @returns The sum of the sueldos.
+ */
 export function sumSueldos(sueldos: Sueldo[]): Sueldo {
   return roundUp(sueldos.reduce((acc, cur) => acc + cur, 0))
 }
 
+/**
+ * Calculates the percentage increase or decrease between two salary amounts.
+ * @param montoSueldoAnterior - The previous salary amount.
+ * @param montoSueldoActual - The current salary amount.
+ * @returns The percentage increase or decrease between the two salary amounts.
+ */
 export function calcularPorcentaje(montoSueldoAnterior: Sueldo, montoSueldoActual: Sueldo): Sueldo {
   return roundUp(
     ((montoSueldoActual - montoSueldoAnterior) / montoSueldoAnterior) * 100,

@@ -1,8 +1,17 @@
 import { Adicionales, Calculos, Formulario, Meses, SueldosBasicos } from './types.ts'
 import { calcularPorcentaje, roundUp, sumSueldos } from './utils.ts'
-import { filterAdicionalesPorFecha, filterSueldosBasicosPorFecha, sueldosBasicosOnTimeline } from './data_parser.ts'
+import { filterAdicionalesPorFecha, findSueldosBasicosPorFecha, sueldosBasicosOnTimeline } from './data_parser.ts'
 import * as calculosParciales from './calculos_parciales.ts'
 
+/**
+ * Calculates the monthly salary based on the provided inputs.
+ *
+ * @param formulario - The form data.
+ * @param meses - The months for which the salary needs to be calculated.
+ * @param sueldosBasicos - The basic salaries for different categories.
+ * @param adicionales - The additional salary components.
+ * @returns An array of calculations for each month, including the salary details.
+ */
 export function calcularSueldoPorMes(
   formulario: Formulario,
   meses: Meses[],
@@ -12,17 +21,16 @@ export function calcularSueldoPorMes(
   const mesesConBasicosYAdicionales = meses
     .map((m) => {
       const mes = m.DESDE
-      const sueldosBasicosFiltrados = filterSueldosBasicosPorFecha(
+      const sueldosBasicosFiltrados = findSueldosBasicosPorFecha(
         sueldosBasicosOnTimeline(sueldosBasicos),
         m.DESDE,
         m.HASTA,
-      )[0]
-
-      const adicio = filterAdicionalesPorFecha(adicionales, m.DESDE, m.HASTA)
+      )
+      const adicionalesFiltradosPorFecha = filterAdicionalesPorFecha(adicionales, m.DESDE, m.HASTA)
       return {
         mes,
         sueldosBasicos: sueldosBasicosFiltrados,
-        adicionales: adicio,
+        adicionales: adicionalesFiltradosPorFecha,
       }
     })
 
@@ -188,7 +196,7 @@ export function calcularSueldoPorMes(
     })
 }
 
-export function porcentajeAumento(sueldosPorMes: Calculos[]): Calculos[] {
+export function calcularSueldosConPorcentajeAumento(sueldosPorMes: Calculos[]): Calculos[] {
   return sueldosPorMes
     .map((s, i, a) => {
       if (i === 0) {
@@ -209,4 +217,15 @@ export function porcentajeAumento(sueldosPorMes: Calculos[]): Calculos[] {
         }
       }
     })
+}
+
+export function calcularSueldos(
+  formulario: Formulario,
+  meses: Meses[],
+  sueldosBasicos: SueldosBasicos[],
+  adicionales: Adicionales[],
+): Calculos[] {
+  const sueldosPorMes = calcularSueldoPorMes(formulario, meses, sueldosBasicos, adicionales)
+  const sueldosConPorcentajeAumento = calcularSueldosConPorcentajeAumento(sueldosPorMes)
+  return sueldosConPorcentajeAumento
 }
