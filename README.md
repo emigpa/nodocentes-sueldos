@@ -5,12 +5,17 @@ Esta librería permite calcular los suleldos nodocentes, ademas de hacer los cal
 
 ## Installation
 
-Node.js:
+NPM
 
 ```sh
-npm install nodocentes-sueldos --save
+npm i nodocentes-sueldos
 ```
 
+JSR
+
+```sh
+npx jsr add @emigpa/nodocentes-sueldos
+```
 
 ## Usage example
 

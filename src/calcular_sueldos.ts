@@ -244,6 +244,7 @@ export function calcularSueldosConPorcentajeAumento(sueldosPorMes: Calculos[]): 
 interface calcularSueldosOptions {
   meses: string[]
   año: string
+  ars?: boolean
 }
 
 /**
@@ -262,7 +263,7 @@ export function calcularSueldos(
   options: calcularSueldosOptions,
 ): CalculosResult[] {
   const createMonths = options.meses.map((m) => createMonthsObject(m, options.año))
-  const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb))
+  const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb, options.ars))
   const adicionalesCast = adicionales.map((a) => castAdicionales(a))
   const sueldosPorMes = calcularSueldoPorMes(formulario, createMonths, sueldosBasicosCast, adicionalesCast)
   const sueldosConPorcentajeAumento = calcularSueldosConPorcentajeAumento(sueldosPorMes)
