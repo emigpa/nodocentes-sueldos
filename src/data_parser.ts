@@ -1,5 +1,9 @@
 import {
+  Adicional,
   Adicionales,
+  AdicionalResult,
+  Calculos,
+  CalculosResult,
   DatasetAdicionales,
   DatasetSueldosBasicos,
   SueldosBasicos,
@@ -131,4 +135,35 @@ export function filterAdicionalesPorFecha(adicionales: Adicionales[], desde: Dat
       // los adicionales que estan vigentes en cada mes.
       return mes.overlaps(vigenciaAdicionales)
     })
+}
+
+export function parseResults(calculos: Calculos[]): CalculosResult[] {
+  return calculos
+    .map((c: Calculos): CalculosResult => ({
+      mes: c.mes.toISODate() || '',
+      adicionales: c.adicionales.map((a: Adicional): AdicionalResult => ({
+        monto: a.monto.toString(),
+        concepto: a.concepto.toString(),
+        remunerativo: a.remunerativo ? 'SI' : 'NO',
+      })),
+      montoSueldoBasico: c.montoSueldoBasico.toString(),
+      montoSueldoSuplemento: c.montoSueldoSuplemento.toString(),
+      montoPermanencia: c.montoPermanencia.toString(),
+      montoAdicionalGrado: c.montoAdicionalGrado.toString(),
+      montoAdicionalCapacitacion: c.montoAdicionalCapacitacion.toString(),
+      montoAdicionalTitulo: c.montoAdicionalTitulo.toString(),
+      montoAntiguedad: c.montoAntiguedad.toString(),
+      montoRiesgoFallo: c.montoRiesgoFallo.toString(),
+      montoHorasExtraCincuenta: c.montoHorasExtraCincuenta.toString(),
+      montoHorasExtraCien: c.montoHorasExtraCien.toString(),
+      montoJubilacion: c.montoJubilacion.toString(),
+      montoLey19032: c.montoLey19032.toString(),
+      montoOsunsam: c.montoOsunsam.toString(),
+      montoApunsam: c.montoApunsam.toString(),
+      montoHijos: c.montoHijos.toString(),
+      montoTotalDescuentos: c.montoTotalDescuentos.toString(),
+      montoSueldoNeto: c.montoSueldoNeto.toString(),
+      montoSueldoBruto: c.montoSueldoBruto.toString(),
+      porcentajeAumento: c.porcentajeAumento?.toString() || '0',
+    }))
 }

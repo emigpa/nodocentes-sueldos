@@ -1,12 +1,12 @@
 import {
   Adicionales,
   Calculos,
+  CalculosResult,
   DatasetAdicionales,
   DatasetSueldosBasicos,
   Formulario,
   Meses,
   SueldosBasicos,
-  SueldosBasicosConDesdeHasta,
 } from './types.ts'
 import { calcularPorcentaje, roundUp, sumSueldos } from './utils.ts'
 import {
@@ -18,6 +18,7 @@ import {
 } from './data_parser.ts'
 import * as calculosParciales from './calculos_parciales.ts'
 import { createMonthsObject } from './utils.ts'
+import { parseResults } from './data_parser.ts'
 
 /**
  * Calculates the monthly salary based on the provided inputs.
@@ -259,13 +260,12 @@ export function calcularSueldos(
   sueldosBasicos: DatasetSueldosBasicos[],
   adicionales: DatasetAdicionales[],
   options: calcularSueldosOptions,
-): Calculos[] {
+): CalculosResult[] {
   const createMonths = options.meses.map((m) => createMonthsObject(m, options.año))
   const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb))
   const adicionalesCast = adicionales.map((a) => castAdicionales(a))
   const sueldosPorMes = calcularSueldoPorMes(formulario, createMonths, sueldosBasicosCast, adicionalesCast)
   const sueldosConPorcentajeAumento = calcularSueldosConPorcentajeAumento(sueldosPorMes)
-  return sueldosConPorcentajeAumento
+  const result = parseResults(sueldosConPorcentajeAumento)
+  return result
 }
-
-// TODO: parse result dates to numbers

@@ -17,7 +17,7 @@ npm install nodocentes-sueldos --save
 Para calcular sueldos hay ejecutar la función calcularSueldos.
 Los parámetros son: formulario, sueldosBasicos, Adicionales y un objeto con opciones (meses y año).
 
-Ej:
+Example:
 
 ```js
 calcularSueldos(
@@ -73,14 +73,88 @@ calcularSueldos(
   }
   )
 ```
+Result:
+```js
+[
+  {
+    mes: "2024-02-01",
+    adicionales: [ { monto: "200", concepto: "suma fija", remunerativo: "SI" } ],
+    montoSueldoBasico: "652706.41",
+    montoSueldoSuplemento: "158144.47",
+    montoPermanencia: "0",
+    montoAdicionalGrado: "54914.54",
+    montoAdicionalCapacitacion: "31379.74",
+    montoAdicionalTitulo: "130541.28",
+    montoAntiguedad: "0",
+    montoRiesgoFallo: "0",
+    montoHorasExtraCincuenta: "0",
+    montoHorasExtraCien: "0",
+    montoJubilacion: "113067.51",
+    montoLey19032: "30836.59",
+    montoOsunsam: "30836.59",
+    montoApunsam: "0",
+    montoHijos: "0",
+    montoTotalDescuentos: "174740.69",
+    montoSueldoNeto: "853145.75",
+    montoSueldoBruto: "1027886.44",
+    porcentajeAumento: "0"
+  },
+  {
+    mes: "2024-03-01",
+    adicionales: [ { monto: "200", concepto: "suma fija", remunerativo: "SI" } ],
+    montoSueldoBasico: "731032",
+    montoSueldoSuplemento: "177121.2",
+    montoPermanencia: "0",
+    montoAdicionalGrado: "61504.31",
+    montoAdicionalCapacitacion: "35145.32",
+    montoAdicionalTitulo: "146206.4",
+    montoAntiguedad: "0",
+    montoRiesgoFallo: "0",
+    montoHorasExtraCincuenta: "0",
+    montoHorasExtraCien: "0",
+    montoJubilacion: "126633.02",
+    montoLey19032: "34536.28",
+    montoOsunsam: "34536.28",
+    montoApunsam: "0",
+    montoHijos: "0",
+    montoTotalDescuentos: "195705.58",
+    montoSueldoNeto: "955503.65",
+    montoSueldoBruto: "1151209.23",
+    porcentajeAumento: "12"
+  }
+]
+
+```
 
 Para mas ejemplos ver tests en /tests
 
 ## Release History
 
-* 0.0.1
-    * first version
+* 0.1.1
+  * Return results object props as string, date as UTC.
+  * Fix: script typos.
+* 0.1.0
+  * first version
 
+## Build and publish
+
+### NPM
+```bash
+# 1. run script
+deno run -A scripts/build_npm.ts ${package-version}
+
+# 2. go to output directory and publish
+cd npm
+npm publish
+```
+
+### JSR
+```bash
+# 1. modify package version in file deno.json
+
+# 2. run script
+deno publish
+```
 ## Contact
 
 Emigpa – emigpa@gmail.com

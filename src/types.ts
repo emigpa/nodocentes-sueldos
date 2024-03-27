@@ -56,6 +56,70 @@ export enum HijosRatio {
   'ratio' = 0.20,
 }
 
+export type Sueldo = number
+
+export type Formulario = {
+  categoria: Categoria
+  antiguedad: number
+  titulo: Titulo
+  permanencia: Permanencia
+  suplementoCategoria: CategoriaSuplemento
+  apunsam: Apunsam
+  horasExtraCincuenta: number
+  horasExtraCien: number
+  hijos: number
+  riesgofallo: RiesgoFallo
+  añoCalcular: string
+}
+
+export type Calculos = {
+  mes: DateTime
+  adicionales: Adicional[]
+  montoSueldoBasico: number
+  montoSueldoSuplemento: number
+  montoPermanencia: number
+  montoAdicionalGrado: number
+  montoAdicionalCapacitacion: number
+  montoAdicionalTitulo: number
+  montoAntiguedad: number
+  montoRiesgoFallo: number
+  montoHorasExtraCincuenta: number
+  montoHorasExtraCien: number
+  montoJubilacion: number
+  montoLey19032: number
+  montoOsunsam: number
+  montoApunsam: number
+  montoHijos: number
+  montoTotalDescuentos: number
+  montoSueldoNeto: number
+  montoSueldoBruto: number
+  porcentajeAumento?: number
+}
+
+export type CalculosResult = {
+  mes: string
+  adicionales: AdicionalResult[]
+  montoSueldoBasico: string
+  montoSueldoSuplemento: string
+  montoPermanencia: string
+  montoAdicionalGrado: string
+  montoAdicionalCapacitacion: string
+  montoAdicionalTitulo: string
+  montoAntiguedad: string
+  montoRiesgoFallo: string
+  montoHorasExtraCincuenta: string
+  montoHorasExtraCien: string
+  montoJubilacion: string
+  montoLey19032: string
+  montoOsunsam: string
+  montoApunsam: string
+  montoHijos: string
+  montoTotalDescuentos: string
+  montoSueldoNeto: string
+  montoSueldoBruto: string
+  porcentajeAumento: string
+}
+
 export type Categoria =
   | 'CATEGORIA 1'
   | 'CATEGORIA 2'
@@ -101,22 +165,6 @@ export type Apunsam =
 export type HorasExtra =
   | 'CIEN'
   | 'CINCUENTA'
-
-export type Formulario = {
-  categoria: Categoria
-  antiguedad: number
-  titulo: Titulo
-  permanencia: Permanencia
-  suplementoCategoria: CategoriaSuplemento
-  apunsam: Apunsam
-  horasExtraCincuenta: number
-  horasExtraCien: number
-  hijos: number
-  riesgofallo: RiesgoFallo
-  añoCalcular: string
-}
-
-export type Sueldo = number
 
 export type DatasetSueldosBasicos = {
   'FECHA': string
@@ -190,27 +238,8 @@ export type Adicional = {
   concepto: string
   remunerativo: boolean
 }
-
-export type Calculos = {
-  mes: DateTime
-  adicionales: Adicional[]
-  montoSueldoBasico: number
-  montoSueldoSuplemento: number
-  montoPermanencia: number
-  montoAdicionalGrado: number
-  montoAdicionalCapacitacion: number
-  montoAdicionalTitulo: number
-  montoAntiguedad: number
-  montoRiesgoFallo: number
-  montoHorasExtraCincuenta: number
-  montoHorasExtraCien: number
-  montoJubilacion: number
-  montoLey19032: number
-  montoOsunsam: number
-  montoApunsam: number
-  montoHijos: number
-  montoTotalDescuentos: number
-  montoSueldoNeto: number
-  montoSueldoBruto: number
-  porcentajeAumento?: number
+export type AdicionalResult = {
+  monto: string
+  concepto: string
+  remunerativo: string
 }

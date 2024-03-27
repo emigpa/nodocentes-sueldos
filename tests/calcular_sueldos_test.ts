@@ -108,6 +108,7 @@ Deno.test('Cálculo de sueldo de Categoria 3 con porcentaje de aumento del 12%',
     adicionalesDataset,
     { meses: ['2', '3'], año: '2024' },
   )
-  assertEquals(1151209.23, sueldos[1].montoSueldoBruto)
-  assertEquals(12, sueldos[1].porcentajeAumento)
+  console.log(sueldos)
+  assertEquals('1151209.23', sueldos[1].montoSueldoBruto)
+  assertEquals('12', sueldos[1].porcentajeAumento)
 })
