@@ -1,4 +1,4 @@
-import { DateTime } from '../deps.ts'
+import type { DateTime } from '../deps.ts'
 
 export enum AdicionalGradoRatio {
   'CATEGORIA 1' = 0.06,

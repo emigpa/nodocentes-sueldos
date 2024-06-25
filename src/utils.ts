@@ -1,5 +1,5 @@
 import { DateTime } from '../deps.ts'
-import { Meses, Sueldo } from './types.ts'
+import type { Meses, Sueldo } from './types.ts'
 
 /**
  * Casts a string to a DateTime object using the specified format and locale to es-AR.
