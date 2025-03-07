@@ -1,4 +1,4 @@
-import {
+import type {
   Adicional,
   Adicionales,
   AdicionalResult,
@@ -9,7 +9,7 @@ import {
   SueldosBasicos,
   SueldosBasicosConDesdeHasta,
 } from './types.ts'
-import { DateTime, Interval } from '../deps.ts'
+import { DateTime, Interval } from 'luxon'
 import { castFecha, sueldo2Number, sueldoARS2Number } from './utils.ts'
 
 /**

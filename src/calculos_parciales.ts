@@ -1,20 +1,22 @@
+import type {
+  Apunsam,
+  Categoria,
+  Formulario,
+  Permanencia,
+  RiesgoFallo,
+  Sueldo,
+  SueldosBasicos,
+  Titulo,
+} from './types.ts'
 import {
   AdicionalCapacitacionRatio,
   AdicionalGradoRatio,
   AdicionalTituloRatio,
   AntiguedadPermanenciaRatio,
-  Apunsam,
-  Categoria,
-  Formulario,
   HijosRatio,
   HorasExtraRatio,
   JubilacionRatio,
-  Permanencia,
-  RiesgoFallo,
   RiesgoFalloRatio,
-  Sueldo,
-  SueldosBasicos,
-  Titulo,
 } from './types.ts'
 import { roundUp } from './utils.ts'
 

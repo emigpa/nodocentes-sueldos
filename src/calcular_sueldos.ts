@@ -1,4 +1,4 @@
-import {
+import type {
   Adicionales,
   Calculos,
   CalculosResult,
@@ -93,7 +93,10 @@ export function calcularSueldoPorMes(
         categoriaRevista,
       )
 
-      const montoHijos = calculosParciales.calcularHijos(m.sueldosBasicos, formulario.hijos)
+      // Si el mes es enero, no cobra el adicional por hijo.
+      const montoHijos = m.mes.get('month') === 1
+        ? 0
+        : calculosParciales.calcularHijos(m.sueldosBasicos, formulario.hijos)
 
       const adicionalesNoRemunerativos = sumSueldos(
         m.adicionales

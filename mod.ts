@@ -16,3 +16,4 @@ export {
 } from './src/calculos_parciales.ts'
 
 export { calcularSueldoPorMes, calcularSueldos, calcularSueldosConPorcentajeAumento } from './src/calcular_sueldos.ts'
+

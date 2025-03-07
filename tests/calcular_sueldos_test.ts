@@ -1,6 +1,6 @@
-import { assertEquals } from 'jsr:@std/assert'
+import { assertEquals } from '@std/assert'
 import { castFecha, createMonthsObject } from '../src/utils.ts'
-import { Adicionales, Formulario } from '../src/types.ts'
+import type { Adicionales, Formulario } from '../src/types.ts'
 
 import * as main from '../mod.ts'
 
@@ -16,6 +16,20 @@ const formulario = {
   riesgofallo: 'NO',
   'añoCalcular': '2024',
   hijos: 0,
+} as Formulario
+
+const formularioHijos = {
+  categoria: 'CATEGORIA 3',
+  antiguedad: 0,
+  titulo: 'TGU',
+  permanencia: '0 a 2 años',
+  suplementoCategoria: 'CATEGORIA 2',
+  apunsam: 'NO',
+  horasExtraCincuenta: 0,
+  horasExtraCien: 0,
+  riesgofallo: 'NO',
+  'añoCalcular': '2024',
+  hijos: 1,
 } as Formulario
 
 const sueldosBasicos = [
@@ -79,6 +93,7 @@ const adicionalesDataset = [
 ]
 const adicionales = [] as Adicionales[]
 const meses = [createMonthsObject('2', '2024'), createMonthsObject('3', '2024')]
+const mesEnero = [createMonthsObject('1', '2024')]
 
 Deno.test('Cálculo de sueldo de Categoria 3', () => {
   const sueldo = main.calcularSueldoPorMes(
@@ -110,4 +125,14 @@ Deno.test('Cálculo de sueldo de Categoria 3 con porcentaje de aumento del 12%',
   )
   assertEquals('1151209.23', sueldos[1].montoSueldoBruto)
   assertEquals('12', sueldos[1].porcentajeAumento)
+})
+
+Deno.test('Si es sueldo de Enero no cobra adicional por hijo', () => {
+  const sueldo = main.calcularSueldoPorMes(
+    formularioHijos,
+    mesEnero,
+    sueldosBasicos,
+    adicionales,
+  )
+  assertEquals(0, sueldo[0].montoHijos)
 })

@@ -1,6 +1,6 @@
-import { assertEquals } from 'jsr:@std/assert'
+import { assertEquals } from '@std/assert'
 import { castFecha } from '../src/utils.ts'
-import { Formulario } from '../src/types.ts'
+import type { Formulario } from '../src/types.ts'
 
 import * as main from '../mod.ts'
 

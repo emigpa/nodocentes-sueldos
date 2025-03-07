@@ -1,4 +1,4 @@
-import { DateTime } from '../deps.ts'
+import type { DateTime } from 'luxon'
 
 export enum AdicionalGradoRatio {
   'CATEGORIA 1' = 0.06,
@@ -75,25 +75,25 @@ export type Formulario = {
 export type Calculos = {
   mes: DateTime
   adicionales: Adicional[]
-  montoSueldoBasico: number
-  montoSueldoSuplemento: number
-  montoPermanencia: number
-  montoAdicionalGrado: number
-  montoAdicionalCapacitacion: number
-  montoAdicionalTitulo: number
-  montoAntiguedad: number
-  montoRiesgoFallo: number
-  montoHorasExtraCincuenta: number
-  montoHorasExtraCien: number
-  montoJubilacion: number
-  montoLey19032: number
-  montoOsunsam: number
-  montoApunsam: number
-  montoHijos: number
-  montoTotalDescuentos: number
-  montoSueldoNeto: number
-  montoSueldoBruto: number
-  porcentajeAumento?: number
+  montoSueldoBasico: Sueldo
+  montoSueldoSuplemento: Sueldo
+  montoPermanencia: Sueldo
+  montoAdicionalGrado: Sueldo
+  montoAdicionalCapacitacion: Sueldo
+  montoAdicionalTitulo: Sueldo
+  montoAntiguedad: Sueldo
+  montoRiesgoFallo: Sueldo
+  montoHorasExtraCincuenta: Sueldo
+  montoHorasExtraCien: Sueldo
+  montoJubilacion: Sueldo
+  montoLey19032: Sueldo
+  montoOsunsam: Sueldo
+  montoApunsam: Sueldo
+  montoHijos: Sueldo
+  montoTotalDescuentos: Sueldo
+  montoSueldoNeto: Sueldo
+  montoSueldoBruto: Sueldo
+  porcentajeAumento?: Sueldo
 }
 
 export type CalculosResult = {
@@ -234,7 +234,7 @@ export type Meses = {
 }
 
 export type Adicional = {
-  monto: number
+  monto: Sueldo
   concepto: string
   remunerativo: boolean
 }
