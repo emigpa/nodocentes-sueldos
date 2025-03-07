@@ -135,6 +135,10 @@ Para mas ejemplos ver tests en /tests
 
 ## Release History
 
+* 0.1.3
+  * If mes is Enero, don't add adicional por hijo.
+* 0.1.2
+  * Added ars option to API
 * 0.1.1
   * Return results object props as string, date as UTC.
   * Fix: script typos.

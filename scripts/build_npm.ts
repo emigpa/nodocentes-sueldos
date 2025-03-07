@@ -8,6 +8,8 @@ await build({
   shims: {
     deno: true,
   },
+  importMap: 'deno.json',
+  typeCheck: false,
   package: {
     name: 'nodocentes-sueldos',
     author: 'emigpa',
