@@ -1,5 +1,6 @@
 import { assertEquals } from '@std/assert'
 import { castFecha, createMonthsObject } from '../src/utils.ts'
+import { castAdicionales } from '../src/data_parser.ts'
 import type { Adicionales, Formulario } from '../src/types.ts'
 
 import * as main from '../mod.ts'
@@ -34,7 +35,7 @@ const formularioHijos = {
 
 const sueldosBasicos = [
   {
-    FECHA: castFecha('1/2/2024'),
+    FECHA: castFecha('1/1/2024'),
     'CATEGORIA 1': 941390.44,
     'CATEGORIA 2': 784493.47,
     'CATEGORIA 3': 652706.41,
@@ -44,7 +45,7 @@ const sueldosBasicos = [
     'CATEGORIA 7': 313795.81,
   },
   {
-    FECHA: castFecha('1/3/2024'),
+    FECHA: castFecha('1/2/2024'),
     'CATEGORIA 1': 1054358,
     'CATEGORIA 2': 878633,
     'CATEGORIA 3': 731032,
@@ -78,8 +79,8 @@ const sueldosBasicosDataset = [
 ]
 const adicionalesDataset = [
   {
-    DESDE: '28/2/2024',
-    HASTA: '30/3/2024',
+    DESDE: '02/01/2024',
+    HASTA: '30/4/2024',
     CONCEPTO: 'suma fija',
     REMUNERATIVO: 'SI',
     'CATEGORIA 1': '0',
@@ -92,7 +93,7 @@ const adicionalesDataset = [
   },
 ]
 const adicionales = [] as Adicionales[]
-const meses = [createMonthsObject('2', '2024'), createMonthsObject('3', '2024')]
+const meses = [createMonthsObject('1', '2024'), createMonthsObject('2', '2024')]
 const mesEnero = [createMonthsObject('1', '2024')]
 
 Deno.test('Cálculo de sueldo de Categoria 3', () => {
@@ -107,16 +108,27 @@ Deno.test('Cálculo de sueldo de Categoria 3', () => {
 
 Deno.test('Cálculo de porcentaje de aumento entre dos meses (12%)', () => {
   const sueldos = main.calcularSueldoPorMes(
-    formulario,
+    formularioHijos,
     meses,
     sueldosBasicos,
-    adicionales,
+    [castAdicionales(adicionalesDataset[0])],
   )
   const conPorcentaje = main.calcularSueldosConPorcentajeAumento(sueldos)
-  assertEquals(12, conPorcentaje[1].porcentajeAumento)
+  assertEquals(18.84, conPorcentaje[1].porcentajeAumento)
 })
 
-Deno.test('Cálculo de sueldo de Categoria 3 con porcentaje de aumento del 12%', () => {
+Deno.test('Cálculo de porcentaje de aumento del sueldo basico entre dos meses (12%)', () => {
+  const sueldos = main.calcularSueldoPorMes(
+    formularioHijos,
+    meses,
+    sueldosBasicos,
+    [castAdicionales(adicionalesDataset[0])],
+  )
+  const conPorcentaje = main.calcularSueldosConPorcentajeAumento(sueldos)
+  assertEquals(12, conPorcentaje[1].porcentajeAumentoBasico)
+})
+
+Deno.test('Cálculo de sueldo de Categoria 3 con porcentaje de aumento básico del 12%', () => {
   const sueldos = main.calcularSueldos(
     formulario,
     sueldosBasicosDataset,
@@ -124,7 +136,7 @@ Deno.test('Cálculo de sueldo de Categoria 3 con porcentaje de aumento del 12%',
     { meses: ['2', '3'], año: '2024', ars: false },
   )
   assertEquals('1151209.23', sueldos[1].montoSueldoBruto)
-  assertEquals('12', sueldos[1].porcentajeAumento)
+  assertEquals('12', sueldos[1].porcentajeAumentoBasico)
 })
 
 Deno.test('Si es sueldo de Enero no cobra adicional por hijo', () => {

@@ -228,6 +228,7 @@ export function calcularSueldosConPorcentajeAumento(sueldosPorMes: Calculos[]): 
         return {
           ...s,
           porcentajeAumento: 0,
+          porcentajeAumentoBasico: 0,
         }
       } else {
         const montoSueldoAnterior = a[i - 1].montoSueldoBruto
@@ -236,9 +237,16 @@ export function calcularSueldosConPorcentajeAumento(sueldosPorMes: Calculos[]): 
           montoSueldoAnterior,
           montoSueldoActual,
         )
+        const montoSueldoBasicoAnterior = a[i - 1].montoSueldoBasico
+        const montoSueldoBasicoActual = s.montoSueldoBasico
+        const porcentajeAumentoBasico = calcularPorcentaje(
+          montoSueldoBasicoAnterior,
+          montoSueldoBasicoActual,
+        )
         return {
           ...s,
           porcentajeAumento,
+          porcentajeAumentoBasico,
         }
       }
     })

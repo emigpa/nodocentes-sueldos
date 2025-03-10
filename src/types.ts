@@ -94,6 +94,7 @@ export type Calculos = {
   montoSueldoNeto: Sueldo
   montoSueldoBruto: Sueldo
   porcentajeAumento?: Sueldo
+  porcentajeAumentoBasico?: Sueldo
 }
 
 export type CalculosResult = {
@@ -118,6 +119,7 @@ export type CalculosResult = {
   montoSueldoNeto: string
   montoSueldoBruto: string
   porcentajeAumento: string
+  porcentajeAumentoBasico: string
 }
 
 export type Categoria =

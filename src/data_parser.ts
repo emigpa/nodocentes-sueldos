@@ -165,5 +165,6 @@ export function parseResults(calculos: Calculos[]): CalculosResult[] {
       montoSueldoNeto: c.montoSueldoNeto.toString(),
       montoSueldoBruto: c.montoSueldoBruto.toString(),
       porcentajeAumento: c.porcentajeAumento?.toString() || '0',
+      porcentajeAumentoBasico: c.porcentajeAumentoBasico?.toString() || '0',
     }))
 }
