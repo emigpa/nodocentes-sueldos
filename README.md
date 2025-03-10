@@ -125,7 +125,8 @@ Result:
     montoTotalDescuentos: "195705.58",
     montoSueldoNeto: "955503.65",
     montoSueldoBruto: "1151209.23",
-    porcentajeAumento: "12"
+    porcentajeAumento: "12",
+    porcentajeAumentoBasico: "12"
   }
 ]
 
@@ -135,6 +136,8 @@ Para mas ejemplos ver tests en /tests
 
 ## Release History
 
+* 0.1.4
+  * Calculate porcentaje aumento sueldo básico.
 * 0.1.3
   * If mes is Enero, don't add adicional por hijo.
 * 0.1.2
