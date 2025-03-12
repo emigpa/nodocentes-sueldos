@@ -47,5 +47,5 @@ export {
 
 export { calcularSueldoPorMes, calcularSueldos, calcularSueldosConPorcentajeAumento } from './src/calcular_sueldos.ts'
 
-export { castFecha, castISOFecha, formatCurrency, formatPercent } from './src/utils.ts'
+export { castISOFecha, formatCurrency, formatPercent } from './src/utils.ts'
 export { castAdicionales, castSueldosBasicos } from './src/data_parser.ts'

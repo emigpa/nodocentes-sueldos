@@ -6,6 +6,7 @@ import type {
   CalculosResult,
   DatasetAdicionales,
   DatasetSueldosBasicos,
+  Remunerativo,
   SueldosBasicos,
   SueldosBasicosConDesdeHasta,
 } from './types.ts'
@@ -45,7 +46,7 @@ export function castAdicionales(adicionales: DatasetAdicionales, ars = false): A
     DESDE: castFecha(adicionales.DESDE),
     HASTA: castFecha(adicionales.HASTA),
     CONCEPTO: adicionales.CONCEPTO,
-    REMUNERATIVO: adicionales.REMUNERATIVO,
+    REMUNERATIVO: adicionales.REMUNERATIVO as Remunerativo,
     'CATEGORIA 1': castSueldo2Number(adicionales['CATEGORIA 1']),
     'CATEGORIA 2': castSueldo2Number(adicionales['CATEGORIA 2']),
     'CATEGORIA 3': castSueldo2Number(adicionales['CATEGORIA 3']),

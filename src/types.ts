@@ -202,6 +202,10 @@ export type SueldosBasicosConDesdeHasta = {
   'CATEGORIA 7': Sueldo
 }
 
+export type Remunerativo =
+  | 'SI'
+  | 'NO'
+
 export type DatasetAdicionales = {
   DESDE: string
   HASTA: string
@@ -220,7 +224,7 @@ export type Adicionales = {
   DESDE: DateTime
   HASTA: DateTime
   CONCEPTO: string
-  REMUNERATIVO: string
+  REMUNERATIVO: Remunerativo
   'CATEGORIA 1': Sueldo
   'CATEGORIA 2': Sueldo
   'CATEGORIA 3': Sueldo

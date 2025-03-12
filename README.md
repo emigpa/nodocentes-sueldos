@@ -135,6 +135,8 @@ Result:
 Para mas ejemplos ver tests en /tests
 
 ## Release History
+* 0.1.6
+  * Fix adicionales wrong cast.
 * 0.1.5
   * Export types and helper functions.
 * 0.1.4

@@ -275,7 +275,7 @@ export function calcularSueldos(
 ): CalculosResult[] {
   const createMonths = options.meses.map((m) => createMonthsObject(m, options.año))
   const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb, options.ars))
-  const adicionalesCast = adicionales.map((a) => castAdicionales(a))
+  const adicionalesCast = adicionales.map((a) => castAdicionales(a, options.ars))
   const sueldosPorMes = calcularSueldoPorMes(formulario, createMonths, sueldosBasicosCast, adicionalesCast)
   const sueldosConPorcentajeAumento = calcularSueldosConPorcentajeAumento(sueldosPorMes)
   const result = parseResults(sueldosConPorcentajeAumento)
