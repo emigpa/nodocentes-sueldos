@@ -135,7 +135,8 @@ Result:
 Para mas ejemplos ver tests en /tests
 
 ## Release History
-
+* 0.1.5
+  * Export types and helper functions.
 * 0.1.4
   * Calculate porcentaje aumento sueldo básico.
 * 0.1.3

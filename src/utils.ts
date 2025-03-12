@@ -11,15 +11,33 @@ export function castFecha(fecha: string): DateTime {
 }
 
 /**
+ * Casts a string representing a ISO date to a DateTime object using the specified format and locale to es-AR.
+ * @param fecha The string representation of the ISO date (yyyy-mm-dd).
+ * @returns The DateTime object representing the parsed date.
+ */
+export function castISOFecha(fecha: string): DateTime {
+  return DateTime.fromISO(fecha, { locale: 'es-AR' })
+}
+
+/**
  * Formats the given amount as a currency string with format es-AR.
  * @param monto - The amount to format.
  * @returns The formatted currency string.
  */
-export function formatCurrency(monto: string) {
+export function formatCurrency(monto: string): string {
   return Number(monto).toLocaleString('es-AR', {
     style: 'currency',
     currency: 'ARS',
   })
+}
+
+/**
+ * Formats the given string as a percent string with format es-AR.
+ * @param percent - The percent to format.
+ * @returns The formatted currency string.
+ */
+export function formatPercent(percent: string | number): string {
+  return `${Number(percent).toLocaleString('es-AR')}%`
 }
 
 /**
