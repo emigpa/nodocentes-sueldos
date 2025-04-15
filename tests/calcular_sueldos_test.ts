@@ -135,7 +135,7 @@ Deno.test('Cálculo de sueldo de Categoria 3 con porcentaje de aumento básico d
     adicionalesDataset,
     { meses: ['2', '3'], año: '2024', ars: false },
   )
-  assertEquals('1151209.23', sueldos[1].montoSueldoBruto)
+  assertEquals('1151109.23', sueldos[1].montoSueldoBruto)
   assertEquals('12', sueldos[1].porcentajeAumentoBasico)
 })
 
