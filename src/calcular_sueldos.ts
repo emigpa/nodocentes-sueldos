@@ -101,13 +101,13 @@ export function calcularSueldoPorMes(
       const adicionalesNoRemunerativos = sumSueldos(
         m.adicionales
           .filter((a: Adicionales) => a.REMUNERATIVO === 'NO')
-          .map((a: Adicionales) => a[formulario.categoria]),
+          .map((a: Adicionales) => a[categoriaRevista]),
       )
 
       const adicionalesRemunerativos = sumSueldos(
         m.adicionales
           .filter((a) => a.REMUNERATIVO === 'SI')
-          .map((a) => a[formulario.categoria]),
+          .map((a) => a[categoriaRevista]),
       )
 
       const montoSueldoSuplemento = calculosParciales.calcularSuplemento(

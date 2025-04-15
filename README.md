@@ -135,6 +135,8 @@ Result:
 Para mas ejemplos ver tests en /tests
 
 ## Release History
+* 0.1.7
+  * Fix adicionales calc against categoria revista.
 * 0.1.6
   * Fix adicionales wrong cast.
 * 0.1.5
