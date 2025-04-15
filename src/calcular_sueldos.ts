@@ -185,7 +185,7 @@ export function calcularSueldoPorMes(
 
       const adicionalesDetalle = m.adicionales
         .map((a) => ({
-          monto: a[formulario.categoria],
+          monto: a[categoriaRevista],
           concepto: a.CONCEPTO,
           remunerativo: a.REMUNERATIVO === 'SI',
         }))
