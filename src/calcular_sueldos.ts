@@ -281,3 +281,15 @@ export function calcularSueldos(
   const result = parseResults(sueldosConPorcentajeAumento)
   return result
 }
+
+export function calcularSac(
+  formulario: Formulario,
+  sueldosBasicos: DatasetSueldosBasicos[],
+  adicionales: DatasetAdicionales[],
+) {
+  // 1. Si no esta el semestre completo no se puede calcular el SAC (ej: enero-junio o junio-diciembre)
+  // TODO: ver si estan todos los sueldos basicos
+
+  // 2. Modificar o agregar la opcion en calcularSueldos para que no incluya lo no remunerativo
+  // 3. filtrar los adicionales no remunerativos
+}
