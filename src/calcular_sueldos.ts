@@ -286,6 +286,19 @@ export function calcularSueldos(
   return result
 }
 
+/**
+ * Calcula el SAC (Sueldo Anual Complementario) para un formulario y datasets de sueldos.
+ * 
+ * El cálculo se realiza solo si se completan todos los meses de un semestre (primer o segundo).
+ * Se determina el sueldo más alto del semestre, se calcula el monto bruto del SAC (la mitad del sueldo más alto),
+ * y luego se aplican los descuentos correspondientes (jubilación, Ley 19032, OSUNSAM, APUNSAM).
+ * 
+ * @param formulario - Datos del formulario del empleado.
+ * @param sueldosBasicos - Dataset de sueldos básicos por mes.
+ * @param adicionales - Dataset de adicionales por mes.
+ * @param options - Opciones de cálculo, incluyendo los meses y el año.
+ * @returns Un objeto con los montos calculados del SAC y sus descuentos, o ceros si no corresponde.
+ */
 export function calcularSac(
   formulario: Formulario,
   sueldosBasicos: DatasetSueldosBasicos[],
@@ -338,4 +351,5 @@ export function calcularSac(
       montoApunsam: 0,
     }
   }
+}
 }
