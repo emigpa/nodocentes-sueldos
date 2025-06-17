@@ -135,6 +135,8 @@ Result:
 Para mas ejemplos ver tests en /tests
 
 ## Release History
+* 0.1.9
+  * Added calc SAC.
 * 0.1.8
   * Fix adicionalesDetalle calc against categoria revista.
 * 0.1.7
