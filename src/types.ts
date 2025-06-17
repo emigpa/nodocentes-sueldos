@@ -126,7 +126,13 @@ export type CalculosResult = {
 
 export type CalculosSac = {
   montoBruto: Sueldo
+  montoSueldoNeto: Sueldo
+  montoJubilacion: Sueldo
+  montoLey19032: Sueldo
+  montoOsunsam: Sueldo
+  montoApunsam: Sueldo
 }
+
 export type Categoria =
   | 'CATEGORIA 1'
   | 'CATEGORIA 2'

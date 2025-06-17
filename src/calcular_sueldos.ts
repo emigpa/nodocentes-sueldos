@@ -9,6 +9,7 @@ import type {
   Meses,
   SueldosBasicos,
 } from './types.ts'
+import { JubilacionRatio } from './types.ts'
 import { calcularPorcentaje, roundUp, sumSueldos } from './utils.ts'
 import {
   castAdicionales,
@@ -298,14 +299,43 @@ export function calcularSac(
     const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb, options.ars))
     const adicionalesCast = adicionales.map((a) => castAdicionales(a, options.ars))
     const sueldosPorMes = calcularSueldoPorMes(formulario, createMonths, sueldosBasicosCast, adicionalesCast)
-    const montosRemunerativos = sueldosPorMes.map((s) => s.montosRemunerativos)
-    const montoBruto = roundUp(Math.max(...montosRemunerativos) / 2)
+    const sueldoMasAlto = sueldosPorMes.reduce((acc, cur) =>
+      cur.montosRemunerativos > acc.montosRemunerativos ? cur : acc
+    )
+    const montoBruto = roundUp(sueldoMasAlto.montosRemunerativos / 2)
+    const montoJubilacion = calculosParciales.calcularJubilacion(montoBruto)
+
+    const montoLey19032 = calculosParciales.calcularLey19032(montoBruto)
+
+    const montoOsunsam = calculosParciales.calcularOsunsam(montoBruto)
+
+    const montoApunsam = formulario.apunsam === 'SI'
+      ? roundUp((sueldoMasAlto.montoSueldoBasico * JubilacionRatio.APUNSAM) / 2)
+      : 0
+
+    const montoTotalDescuentos = sumSueldos([
+      montoJubilacion,
+      montoLey19032,
+      montoOsunsam,
+      montoApunsam,
+    ])
+    const montoSueldoNeto = roundUp(montoBruto - montoTotalDescuentos)
     return {
       montoBruto,
+      montoSueldoNeto,
+      montoJubilacion,
+      montoLey19032,
+      montoOsunsam,
+      montoApunsam,
     }
   } else {
     return {
       montoBruto: 0,
+      montoSueldoNeto: 0,
+      montoJubilacion: 0,
+      montoLey19032: 0,
+      montoOsunsam: 0,
+      montoApunsam: 0,
     }
   }
 }

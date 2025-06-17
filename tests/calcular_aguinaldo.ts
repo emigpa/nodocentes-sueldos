@@ -11,7 +11,7 @@ const formulario = {
   titulo: 'Secundario',
   permanencia: '2 a 4 años',
   suplementoCategoria: 'SIN SUPLEMENTO',
-  apunsam: 'NO',
+  apunsam: 'SI',
   horasExtraCincuenta: 0,
   horasExtraCien: 0,
   riesgofallo: 'NO',
@@ -204,7 +204,8 @@ Deno.test('Cálculo de aguinaldo (SAC) de Categoria 3', () => {
     formulario,
     sueldosBasicos2024,
     adicionalesDataset,
-    { meses: ['7', '8', '9', '10', '11'], año: '2024', ars: false },
+    { meses: ['7', '8', '9', '10', '11', '12'], año: '2024', ars: false },
   )
+  console.log(sac)
   assertEquals(652766.75, sac.montoBruto)
 })
