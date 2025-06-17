@@ -45,7 +45,12 @@ export {
   calcularSuplemento,
 } from './src/calculos_parciales.ts'
 
-export { calcularSueldoPorMes, calcularSueldos, calcularSueldosConPorcentajeAumento } from './src/calcular_sueldos.ts'
+export {
+  calcularSac,
+  calcularSueldoPorMes,
+  calcularSueldos,
+  calcularSueldosConPorcentajeAumento,
+} from './src/calcular_sueldos.ts'
 
 export { castISOFecha, formatCurrency, formatPercent } from './src/utils.ts'
 export { castAdicionales, castSueldosBasicos } from './src/data_parser.ts'

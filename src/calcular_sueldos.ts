@@ -2,6 +2,7 @@ import type {
   Adicionales,
   Calculos,
   CalculosResult,
+  CalculosSac,
   DatasetAdicionales,
   DatasetSueldosBasicos,
   Formulario,
@@ -212,6 +213,8 @@ export function calcularSueldoPorMes(
         montoTotalDescuentos,
         montoSueldoNeto,
         montoSueldoBruto,
+        montosRemunerativos,
+        montosNoRemunerativos,
       }
     })
 }
@@ -286,10 +289,23 @@ export function calcularSac(
   formulario: Formulario,
   sueldosBasicos: DatasetSueldosBasicos[],
   adicionales: DatasetAdicionales[],
-) {
-  // 1. Si no esta el semestre completo no se puede calcular el SAC (ej: enero-junio o junio-diciembre)
-  // TODO: ver si estan todos los sueldos basicos
-
-  // 2. Modificar o agregar la opcion en calcularSueldos para que no incluya lo no remunerativo
-  // 3. filtrar los adicionales no remunerativos
+  options: calcularSueldosOptions,
+): CalculosSac {
+  const primerSemestre = options.meses.filter((m) => ['1', '2', '3', '4', '5', '6'].includes(m)).length === 6
+  const segundoSemestre = options.meses.filter((m) => ['7', '8', '9', '10', '11', '12'].includes(m)).length === 6
+  if (primerSemestre || segundoSemestre) {
+    const createMonths = options.meses.map((m) => createMonthsObject(m, options.año))
+    const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb, options.ars))
+    const adicionalesCast = adicionales.map((a) => castAdicionales(a, options.ars))
+    const sueldosPorMes = calcularSueldoPorMes(formulario, createMonths, sueldosBasicosCast, adicionalesCast)
+    const montosRemunerativos = sueldosPorMes.map((s) => s.montosRemunerativos)
+    const montoBruto = roundUp(Math.max(...montosRemunerativos) / 2)
+    return {
+      montoBruto,
+    }
+  } else {
+    return {
+      montoBruto: 0,
+    }
+  }
 }

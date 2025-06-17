@@ -77,6 +77,8 @@ export type Calculos = {
   adicionales: Adicional[]
   montoSueldoBasico: Sueldo
   montoSueldoSuplemento: Sueldo
+  montosRemunerativos: Sueldo
+  montosNoRemunerativos: Sueldo
   montoPermanencia: Sueldo
   montoAdicionalGrado: Sueldo
   montoAdicionalCapacitacion: Sueldo
@@ -122,6 +124,9 @@ export type CalculosResult = {
   porcentajeAumentoBasico: string
 }
 
+export type CalculosSac = {
+  montoBruto: Sueldo
+}
 export type Categoria =
   | 'CATEGORIA 1'
   | 'CATEGORIA 2'
