@@ -307,6 +307,7 @@ export function calcularSac(
 ): CalculosSac {
   const primerSemestre = options.meses.filter((m) => ['1', '2', '3', '4', '5', '6'].includes(m)).length === 6
   const segundoSemestre = options.meses.filter((m) => ['7', '8', '9', '10', '11', '12'].includes(m)).length === 6
+  const mes = primerSemestre ? '1er SAC' : segundoSemestre ? '2do SAC' : ''
   if (primerSemestre || segundoSemestre) {
     const createMonths = options.meses.map((m) => createMonthsObject(m, options.año))
     const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb, options.ars))
@@ -332,23 +333,28 @@ export function calcularSac(
       montoOsunsam,
       montoApunsam,
     ])
-    const montoSueldoNeto = roundUp(montoBruto - montoTotalDescuentos)
+    const montoNeto = roundUp(montoBruto - montoTotalDescuentos)
+    const mes = primerSemestre ? '1er SAC' : segundoSemestre ? '2do SAC' : ''
     return {
+      mes,
       montoBruto,
-      montoSueldoNeto,
+      montoNeto,
       montoJubilacion,
       montoLey19032,
       montoOsunsam,
       montoApunsam,
+      montoTotalDescuentos,
     }
   } else {
     return {
+      mes,
       montoBruto: 0,
-      montoSueldoNeto: 0,
+      montoNeto: 0,
       montoJubilacion: 0,
       montoLey19032: 0,
       montoOsunsam: 0,
       montoApunsam: 0,
+      montoTotalDescuentos: 0,
     }
   }
 }

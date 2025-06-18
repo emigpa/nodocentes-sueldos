@@ -135,6 +135,8 @@ Result:
 Para mas ejemplos ver tests en /tests
 
 ## Release History
+* 0.1.11
+  * Modified SAC type.
 * 0.1.10
   * Exports and fixes.
 * 0.1.9

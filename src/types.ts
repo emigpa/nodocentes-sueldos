@@ -126,11 +126,12 @@ export type CalculosResult = {
 
 export type CalculosSac = {
   montoBruto: Sueldo
-  montoSueldoNeto: Sueldo
+  montoNeto: Sueldo
   montoJubilacion: Sueldo
   montoLey19032: Sueldo
   montoOsunsam: Sueldo
   montoApunsam: Sueldo
+  montoTotalDescuentos: Sueldo
 }
 
 export type Categoria =
