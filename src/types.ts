@@ -125,6 +125,7 @@ export type CalculosResult = {
 }
 
 export type CalculosSac = {
+  mes: string
   montoBruto: Sueldo
   montoNeto: Sueldo
   montoJubilacion: Sueldo
