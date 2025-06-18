@@ -1,6 +1,6 @@
 {
   "name": "@emigpa/nodocentes-sueldos",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "exports": "./mod.ts",
   "fmt": {
     "useTabs": false,

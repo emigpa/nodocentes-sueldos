@@ -9,6 +9,7 @@ export type {
   Apunsam,
   Calculos,
   CalculosResult,
+  CalculosSac,
   Categoria,
   CategoriaSuplemento,
   DatasetAdicionales,
