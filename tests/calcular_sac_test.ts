@@ -1,8 +1,8 @@
 import { parse } from '@std/csv/parse'
 import { assertEquals } from '@std/assert'
-import { castFecha, createMonthsObject } from '../src/utils.ts'
+import { createMonthsObject } from '../src/utils.ts'
 import { castAdicionales, castSueldosBasicos } from '../src/data_parser.ts'
-import type { Adicionales, DatasetAdicionales, DatasetSueldosBasicos, Formulario, Meses } from '../src/types.ts'
+import type { DatasetAdicionales, DatasetSueldosBasicos, Formulario, Meses } from '../src/types.ts'
 import * as main from '../mod.ts'
 
 const sueldosTSV = await Deno.readTextFile('./tests/sueldos_basicos.tsv')
@@ -58,5 +58,5 @@ Deno.test('Cálculo de segundo SAC 2025', () => {
     adicionalesDataset,
     { meses: ['7', '8', '9', '10', '11', '12'], año: '2025', ars: false },
   )
-  assertEquals(674759.77, sac.montoNeto)
+  assertEquals(666459.77, sac.montoNeto)
 })

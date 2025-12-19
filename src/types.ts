@@ -75,6 +75,7 @@ export type Formulario = {
 export type Calculos = {
   mes: DateTime
   adicionales: Adicional[]
+  montoAdicionalesNoBonificables: Sueldo
   montoSueldoBasico: Sueldo
   montoSueldoSuplemento: Sueldo
   montosRemunerativos: Sueldo
@@ -218,12 +219,16 @@ export type SueldosBasicosConDesdeHasta = {
 export type Remunerativo =
   | 'SI'
   | 'NO'
+export type Bonificable =
+  | 'SI'
+  | 'NO'
 
 export type DatasetAdicionales = {
   DESDE: string
   HASTA: string
   CONCEPTO: string
   REMUNERATIVO: string
+  BONIFICABLES: string
   'CATEGORIA 1': string
   'CATEGORIA 2': string
   'CATEGORIA 3': string
@@ -238,6 +243,7 @@ export type Adicionales = {
   HASTA: DateTime
   CONCEPTO: string
   REMUNERATIVO: Remunerativo
+  BONIFICABLES: Bonificable
   'CATEGORIA 1': Sueldo
   'CATEGORIA 2': Sueldo
   'CATEGORIA 3': Sueldo

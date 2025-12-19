@@ -112,6 +112,12 @@ export function calcularSueldoPorMes(
           .map((a) => a[categoriaRevista]),
       )
 
+      const adicionalesNoBonificables = sumSueldos(
+        m.adicionales
+          .filter((a) => a.BONIFICABLES === 'NO')
+          .map((a) => a[categoriaRevista]),
+      )
+
       const montoSueldoSuplemento = calculosParciales.calcularSuplemento(
         formulario,
         m.sueldosBasicos,
@@ -196,6 +202,7 @@ export function calcularSueldoPorMes(
       return {
         mes: m.mes,
         adicionales: adicionalesDetalle,
+        montoAdicionalesNoBonificables: adicionalesNoBonificables,
         montoSueldoBasico,
         montoSueldoSuplemento,
         montoPermanencia,
@@ -313,10 +320,9 @@ export function calcularSac(
     const sueldosBasicosCast = sueldosBasicos.map((sb) => castSueldosBasicos(sb, options.ars))
     const adicionalesCast = adicionales.map((a) => castAdicionales(a, options.ars))
     const sueldosPorMes = calcularSueldoPorMes(formulario, createMonths, sueldosBasicosCast, adicionalesCast)
-    const sueldoMasAlto = sueldosPorMes.reduce((acc, cur) =>
-      cur.montosRemunerativos > acc.montosRemunerativos ? cur : acc
-    )
-    const montoBruto = roundUp(sueldoMasAlto.montosRemunerativos / 2)
+    const sueldoMasAlto = sueldosPorMes
+      .reduce((acc, cur) => cur.montosRemunerativos > acc.montosRemunerativos ? cur : acc)
+    const montoBruto = roundUp((sueldoMasAlto.montosRemunerativos - sueldoMasAlto.montoAdicionalesNoBonificables) / 2)
     const montoJubilacion = calculosParciales.calcularJubilacion(montoBruto)
 
     const montoLey19032 = calculosParciales.calcularLey19032(montoBruto)

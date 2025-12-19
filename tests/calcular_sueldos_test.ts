@@ -83,6 +83,7 @@ const adicionalesDataset = [
     HASTA: '30/4/2024',
     CONCEPTO: 'suma fija',
     REMUNERATIVO: 'SI',
+    BONIFICABLES: 'SI',
     'CATEGORIA 1': '0',
     'CATEGORIA 2': '100',
     'CATEGORIA 3': '200',
