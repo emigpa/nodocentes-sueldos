@@ -51,45 +51,12 @@ Deno.test('Cálculo de sueldo enero de 2025', () => {
   assertEquals(1436697.8, sueldo[0].montoSueldoBruto)
 })
 
-// Deno.test('Cálculo de porcentaje de aumento entre dos meses (12%)', () => {
-//   const sueldos = main.calcularSueldoPorMes(
-//     formularioHijos,
-//     meses,
-//     sueldosBasicos,
-//     [castAdicionales(adicionalesDataset[0])],
-//   )
-//   const conPorcentaje = main.calcularSueldosConPorcentajeAumento(sueldos)
-//   assertEquals(18.84, conPorcentaje[1].porcentajeAumento)
-// })
-//
-// Deno.test('Cálculo de porcentaje de aumento del sueldo basico entre dos meses (12%)', () => {
-//   const sueldos = main.calcularSueldoPorMes(
-//     formularioHijos,
-//     meses,
-//     sueldosBasicos,
-//     [castAdicionales(adicionalesDataset[0])],
-//   )
-//   const conPorcentaje = main.calcularSueldosConPorcentajeAumento(sueldos)
-//   assertEquals(12, conPorcentaje[1].porcentajeAumentoBasico)
-// })
-//
-// Deno.test('Cálculo de sueldo de Categoria 3 con porcentaje de aumento básico del 12%', () => {
-//   const sueldos = main.calcularSueldos(
-//     formulario,
-//     sueldosBasicosDataset,
-//     adicionalesDataset,
-//     { meses: ['2', '3'], año: '2024', ars: false },
-//   )
-//   assertEquals('1151109.23', sueldos[1].montoSueldoBruto)
-//   assertEquals('12', sueldos[1].porcentajeAumentoBasico)
-// })
-//
-// Deno.test('Si es sueldo de Enero no cobra adicional por hijo', () => {
-//   const sueldo = main.calcularSueldoPorMes(
-//     formularioHijos,
-//     mesEnero,
-//     sueldosBasicos,
-//     adicionales,
-//   )
-//   assertEquals(0, sueldo[0].montoHijos)
-// })
+Deno.test('Cálculo de segundo SAC 2025', () => {
+  const sac = main.calcularSac(
+    formulario,
+    sueldosBasicosDataset,
+    adicionalesDataset,
+    { meses: ['7', '8', '9', '10', '11', '12'], año: '2025', ars: false },
+  )
+  assertEquals(674759.77, sac.montoNeto)
+})
