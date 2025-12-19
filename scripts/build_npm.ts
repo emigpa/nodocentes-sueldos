@@ -10,6 +10,7 @@ await build({
   },
   importMap: 'deno.json',
   typeCheck: false,
+  test: false,
   package: {
     name: 'nodocentes-sueldos',
     author: 'emigpa',

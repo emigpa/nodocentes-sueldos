@@ -1,4 +1,5 @@
 # nodocentes-sueldos
+>
 > Librería para calcular el sueldo nodocente.
 
 Esta librería permite calcular los suleldos nodocentes, ademas de hacer los calculos parciales de horas extra, adicionales, antiguedad, etc.
@@ -64,6 +65,7 @@ calcularSueldos(
     HASTA: '1/3/2024',
     CONCEPTO: 'SUMA FIJA',
     REMUNERATIVO: 'NO'
+    BONIFICABLES: 'NO'
     'CATEGORIA 1': 0,
     'CATEGORIA 2': 0,
     'CATEGORIA 3': 0,
@@ -78,13 +80,16 @@ calcularSueldos(
   }
   )
 ```
+
 Result:
+
 ```js
 [
   {
     mes: "2024-02-01",
     adicionales: [ { monto: "200", concepto: "suma fija", remunerativo: "SI" } ],
     montoSueldoBasico: "652706.41",
+    montoAdicionalesNoBonificables: "0",
     montoSueldoSuplemento: "158144.47",
     montoPermanencia: "0",
     montoAdicionalGrado: "54914.54",
@@ -135,6 +140,9 @@ Result:
 Para mas ejemplos ver tests en /tests
 
 ## Release History
+
+* 0.2.0
+  * Added type BONIFICABLES to Adicionales to calculate the SAC correctly.
 * 0.1.11
   * Modified SAC type.
 * 0.1.10
@@ -164,6 +172,7 @@ Para mas ejemplos ver tests en /tests
 ## Build and publish
 
 ### NPM
+
 ```bash
 # 1. run script
 deno run -A scripts/build_npm.ts ${package-version}
@@ -174,17 +183,18 @@ npm publish
 ```
 
 ### JSR
+
 ```bash
 # 1. modify package version in file deno.json
 
 # 2. run script
 deno publish
 ```
+
 ## Contact
 
-Emigpa – emigpa@gmail.com
+Emigpa – <emigpa@gmail.com>
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
 [https://github.com/emigpa/nodocentes-sueldos](https://github.com/emigpa/nodocentes-sueldos)
-
